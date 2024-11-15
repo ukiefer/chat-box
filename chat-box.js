@@ -12,7 +12,6 @@
         this.elChat = $$.qs('.chat-box', this.el)
         this.elOuter = this.elChat.parentElement
         this.step = 0
-        this.steps = '111001111011011011100110'
     }
 
     // static values
@@ -57,7 +56,7 @@
         this.showWords()
     }
 
-    nextStep() {
+    nextIntervalStep() {
         this.step += 1
         if (this.step >= 24) {
             this.step = 0
@@ -70,7 +69,7 @@
         const length = words.length
         let i = 0
         const interval = setInterval(() => {
-            if (this.nextStep()) {
+            if (this.nextIntervalStep()) {
                 words[i].classList.remove('h')
                 this.scrollToBottom()
                 i += 1
@@ -78,10 +77,6 @@
                     clearInterval(interval)
                 }
             }
-            // this.step += 1
-            // if (this.step >= 24) {
-            //     this.step = 0
-            // }
         }, ChatBox.SPEED)
     }
 
