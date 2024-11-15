@@ -4,32 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kpi</title>
+    <title>Chat box</title>
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/kpi.css">
-    <script type="module" src="kpi.js"></script>
+    <link rel="stylesheet" href="css/chat-box.css">
+    <script type="module" src="chat-box.js"></script>
     <script type="module" src="main.js" defer ></script>
 </head>
 <body>
   <header><a href="#first">#</a></header>
   <main>
     <h1>Heading</h1>
-    <div class="grid">
-      <div class="grid__item">
-        <div class="kpi" data-js-module="kpi">
-          <div class="kpi__value" data-js-atom="value">
-            1.234 €
-          </div>
-        </div>
+    <chat-box>
+      <button>chat</button>
+      <div class="chat-box__outer" tabindex="0">
+        <div id="box" class="chat-box"></div>
       </div>
-      <div class="grid__item">
-        <div class="kpi" data-js-module="kpi">
-          <div class="kpi__value" data-js-atom="value">
-            250 M
-          </div>
-        </div>
-      </div>
-    </div>
+    </chat-box>
   </main>
 </body>
 </html>

@@ -1,0 +1,31 @@
+// chat-box styles
+chat-box
+    diaplay: inline-block
+    position: fixed
+    bottom: 20px
+    right: 20px
+
+    .chat-box
+        display: flow-root
+        outline: 2px solid rgba(blue,.3)
+        min-height: 100%
+
+        &__message
+            &.left
+                padding-right: 30px
+
+            &.right
+                padding-left: 30px
+
+            span.h
+                display: none
+
+        &__outer
+            outline: 2px solid rgba(red,.3)
+            position: absolute
+            right: 0
+            bottom: 30px
+            width: 300px
+            height: 500px
+            overflow-y: scroll
+            scrollbar-width: none

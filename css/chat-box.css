@@ -1,0 +1,30 @@
+chat-box {
+  diaplay: inline-block;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+chat-box .chat-box {
+  display: flow-root;
+  outline: 2px solid rgba(0, 0, 255, 0.3);
+  min-height: 100%;
+}
+chat-box .chat-box__message.left {
+  padding-right: 30px;
+}
+chat-box .chat-box__message.right {
+  padding-left: 30px;
+}
+chat-box .chat-box__message span.h {
+  display: none;
+}
+chat-box .chat-box__outer {
+  outline: 2px solid rgba(255, 0, 0, 0.3);
+  position: absolute;
+  right: 0;
+  bottom: 30px;
+  width: 300px;
+  height: 500px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}/*# sourceMappingURL=chat-box.css.map */
