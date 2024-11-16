@@ -117,8 +117,29 @@ const chatBox = new ChatBox($$.qs('chat-box'))
 chatBox.initialize()
 
 let pos = false
-const btn = $$.qs('chat-box > button')
+const btn = $$.qs('chat-box > button:nth-child(1)')
+const btnSelect = $$.qs('chat-box > button:nth-child(2)')
 btn.onclick = () => {
     pos = !pos
     chatBox.insertBubble(pos, '<p class="foo">Weit hinten, hinter den Wortbergen, <strong>fern der Länder Vokalien</strong> <u>und</u> Konsonantien leben die Blindtexte. Abgeschieden wohnen sie in Buchstabhausen an der Küste des Semantik, eines großen Sprachozeans.</p>')
+}
+btnSelect.onclick = () => {
+    chatBox.insertBubbleSelect(false, [
+        {
+            text: 'Option 1',
+            nextStep: 1
+        },
+        {
+            text: 'Ein kleines Bächlein namens Duden fließt durch ihren Ort und versorgt sie mit den nötigen Regelialien.',
+            nextStep: 2
+        },
+        {
+            text: 's ist ein paradiesmatisches Land, in dem einem gebratene Satzteile in den Mund fliegen.',
+            nextStep: 3
+        },
+        {
+            text: 'Option 4',
+            nextStep: 4
+        }
+    ], 30)
 }

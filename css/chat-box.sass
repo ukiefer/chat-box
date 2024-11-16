@@ -5,27 +5,54 @@ chat-box
     bottom: 20px
     right: 20px
 
-    .chat-box
-        display: flow-root
-        outline: 2px solid rgba(blue,.3)
-        min-height: 100%
+.chat-box
+    padding-inline: 10px
+    display: flow-root
+    outline: 2px solid rgba(blue,.3)
+    min-height: 100%
 
-        &__message
-            &.left
-                padding-right: 30px
+    .h
+        display: none
 
-            &.right
-                padding-left: 30px
+    &__message
+        &.left
+            padding-right: 30px
 
-            span.h
-                display: none
+        &.right
+            padding-left: 30px
 
-        &__outer
-            outline: 2px solid rgba(red,.3)
-            position: absolute
-            right: 0
-            bottom: 30px
-            width: 300px
-            height: 500px
-            overflow-y: scroll
-            scrollbar-width: none
+        &:first-child
+            margin-top: 10px
+
+    &__option
+        // transition: max-height 2s ease-out
+        overflow: hidden
+
+        &.fade-out
+            transition: max-height 400ms ease-out, opacity 200ms
+
+            &[style]
+                opacity: 0
+
+            &.go
+                max-height: 0 !important
+
+        &-inner
+            button
+                text-align: left
+
+                > *
+                    pointer-events: none
+
+            .right &
+                text-align: right
+
+    &__outer
+        outline: 2px solid rgba(red,.3)
+        position: absolute
+        right: 0
+        bottom: 30px
+        width: 300px
+        height: 500px
+        overflow-y: scroll
+        scrollbar-width: none

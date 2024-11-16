@@ -4,21 +4,47 @@ chat-box {
   bottom: 20px;
   right: 20px;
 }
-chat-box .chat-box {
+
+.chat-box {
+  padding-inline: 10px;
   display: flow-root;
   outline: 2px solid rgba(0, 0, 255, 0.3);
   min-height: 100%;
 }
-chat-box .chat-box__message.left {
-  padding-right: 30px;
-}
-chat-box .chat-box__message.right {
-  padding-left: 30px;
-}
-chat-box .chat-box__message span.h {
+.chat-box .h {
   display: none;
 }
-chat-box .chat-box__outer {
+.chat-box__message.left {
+  padding-right: 30px;
+}
+.chat-box__message.right {
+  padding-left: 30px;
+}
+.chat-box__message:first-child {
+  margin-top: 10px;
+}
+.chat-box__option {
+  overflow: hidden;
+}
+.chat-box__option.fade-out {
+  transition: max-height 400ms ease-out, opacity 200ms;
+}
+.chat-box__option.fade-out[style] {
+  opacity: 0;
+}
+.chat-box__option.fade-out.go {
+  max-height: 0 !important;
+}
+.chat-box__option-inner button {
+  text-align: left;
+}
+.chat-box__option-inner button > * {
+  pointer-events: none;
+}
+.right .chat-box__option-inner {
+  text-align: right;
+}
+.chat-box__outer {
   outline: 2px solid rgba(255, 0, 0, 0.3);
   position: absolute;
   right: 0;

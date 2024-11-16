@@ -20,7 +20,16 @@
 
  
     initialize() {
+        this.addEvents()
         console.log('initialized module chat-box', this.el)
+    }
+
+    addEvents() {
+        this.elChat.addEventListener('click', ({target}) => {
+            if (target.dataset.next) {
+                this.onSelect(target)
+            }
+        })
     }
 
     addSpans(text) {
@@ -29,7 +38,10 @@
         const regex = /<[^>]*>/g
         const match = text.match(regex)
         const split = text.split(regex)
-        split.shift()
+
+        if (split.length > 1) {
+            split.shift()
+        }
         split.forEach((t) => {
             const newPart = []
             const part = t.split(' ')
@@ -40,20 +52,51 @@
                     newPart.push(word)
                 }
             })
-            newText += match[index]
+            newText += match ? match[index] : ''
             newText += newPart.join(' ')
             index += 1
         })
         return newText
     }
 
-    insertBubble(position, text) {
+    hideOption(option) {
+        option.style.maxHeight = `${option.clientHeight}px`
+        option.classList.add('fade-out')
+        option.addEventListener('transitionend', () => {
+            option.remove()
+        }, {once: true})
+        setTimeout(() => {
+            option.classList.add('go')
+        }, 1)
+    }
+
+    insertBubble(position, text, speed = ChatBox.SPEED) {
         this.elChat.append($$.createElement(`
             <div class="chat-box__message ${position ? 'left' : 'right'}">
                 ${this.addSpans(text)}
             </div>`
         ))
-        this.showWords()
+        this.showItems(speed)
+    }
+
+    insertBubbleSelect(position, options, speed = ChatBox.SPEED) {
+        let o = ''
+        options.forEach((option) => {
+            o += `
+                <div class="chat-box__option h">
+                    <div class="chat-box__option-inner">
+                        <button data-next="${option.nextStep}">${this.addSpans(option.text)}</button>
+                    </div>
+                </div>
+            `
+        })
+        this.elChat.append($$.createElement(`
+            <div class="chat-box__select ${position ? 'left' : 'right'}">
+                ${o}
+            </div>`
+        ))
+
+        this.showItems(speed)
     }
 
     nextIntervalStep() {
@@ -64,20 +107,35 @@
         return ChatBox.STEPS[this.step] === '1'
     }
 
-    showWords() {
-        const words = $$.qsa('span.h', this.elChat)
-        const length = words.length
+    onSelect(target) {
+        target.setAttribute('disabled', '')
+        const option = target.closest('.chat-box__option')
+        const siblings = [...option.parentNode.children].filter(node => node != option)
+        const interval = setInterval(() => {
+            if (siblings.length) {
+                this.hideOption(siblings.shift())
+            } else {
+                clearInterval(interval)
+                //TODO trigger next step
+            }
+        }, ChatBox.SPEED)
+    }
+
+    showItems(speed) {
+        console.log('speed', speed)
+        const items = $$.qsa('.h', this.elChat)
+        const length = items.length
         let i = 0
         const interval = setInterval(() => {
             if (this.nextIntervalStep()) {
-                words[i].classList.remove('h')
+                items[i].classList.remove('h')
                 this.scrollToBottom()
                 i += 1
                 if (i >= length) {
                     clearInterval(interval)
                 }
             }
-        }, ChatBox.SPEED)
+        }, speed)
     }
 
     scrollToBottom() {
