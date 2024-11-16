@@ -10,6 +10,7 @@
         this.options = obj
 
         this.elChat = $$.qs('.chat-box', this.el)
+        this.elInner = $$.qs('.chat-box__inner', this.el)
         this.elOuter = this.elChat.parentElement
         this.step = 0
     }
@@ -71,8 +72,8 @@
     }
 
     insertBubble(position, text, speed = ChatBox.SPEED) {
-        this.elChat.append($$.createElement(`
-            <div class="chat-box__message ${position ? 'left' : 'right'}">
+        this.elInner.append($$.createElement(`
+            <div class="chat-box__message tip ${position ? 'left' : 'right'}">
                 ${this.addSpans(text)}
             </div>`
         ))
@@ -85,12 +86,12 @@
             o += `
                 <div class="chat-box__option h">
                     <div class="chat-box__option-inner">
-                        <button data-next="${option.nextStep}">${this.addSpans(option.text)}</button>
+                        <button class="tip ${position ? 'left' : 'right'}" data-next="${option.nextStep}">${this.addSpans(option.text)}</button>
                     </div>
                 </div>
             `
         })
-        this.elChat.append($$.createElement(`
+        this.elInner.append($$.createElement(`
             <div class="chat-box__select ${position ? 'left' : 'right'}">
                 ${o}
             </div>`
@@ -122,7 +123,6 @@
     }
 
     showItems(speed) {
-        console.log('speed', speed)
         const items = $$.qsa('.h', this.elChat)
         const length = items.length
         let i = 0

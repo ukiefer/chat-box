@@ -6,25 +6,60 @@ chat-box {
 }
 
 .chat-box {
-  padding-inline: 10px;
+  padding-inline: 30px;
   display: flow-root;
   outline: 2px solid rgba(0, 0, 255, 0.3);
   min-height: 100%;
+  --_chat-box-bg: #eeeeee;
+}
+.chat-box p {
+  margin: 0;
 }
 .chat-box .h {
   display: none;
 }
-.chat-box__message.left {
-  padding-right: 30px;
+.chat-box .tip {
+  position: relative;
 }
-.chat-box__message.right {
-  padding-left: 30px;
+.chat-box .tip::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 30px;
+  aspect-ratio: 1;
+  background-color: var(--_chat-box-bg);
+  -webkit-mask-image: radial-gradient(circle, transparent 70%, black 70%);
+          mask-image: radial-gradient(circle, transparent 70%, black 70%);
+  pointer-events: none;
 }
-.chat-box__message:first-child {
-  margin-top: 10px;
+.chat-box .tip.left::after {
+  left: -30px;
+  -webkit-clip-path: inset(50% 0 0 50%);
+          clip-path: inset(50% 0 0 50%);
 }
-.chat-box__option {
-  overflow: hidden;
+.chat-box .tip.right::after {
+  right: -30px;
+  -webkit-clip-path: inset(50% 50% 0 0);
+          clip-path: inset(50% 50% 0 0);
+}
+.chat-box__inner {
+  padding-block: 10px;
+  display: grid;
+  gap: 10px;
+}
+.chat-box__message, .chat-box__option button {
+  position: relative;
+  padding: 10px;
+  background-color: var(--_chat-box-bg);
+  border-radius: 10px;
+}
+.chat-box__message.left, .chat-box__option button.left {
+  margin-right: 30px;
+  border-bottom-left-radius: 0;
+}
+.chat-box__message.right, .chat-box__option button.right {
+  margin-left: 30px;
+  border-bottom-right-radius: 0;
 }
 .chat-box__option.fade-out {
   transition: max-height 400ms ease-out, opacity 200ms;
@@ -44,13 +79,26 @@ chat-box {
 .right .chat-box__option-inner {
   text-align: right;
 }
+.chat-box__option button {
+  --_chat-box-bg: pink;
+  border: 0;
+  cursor: pointer;
+}
+.chat-box__option button[disabled] {
+  --_chat-box-bg: deeppink;
+  color: white;
+}
 .chat-box__outer {
   outline: 2px solid rgba(255, 0, 0, 0.3);
   position: absolute;
   right: 0;
   bottom: 30px;
-  width: 300px;
+  width: 320px;
   height: 500px;
   overflow-y: scroll;
   scrollbar-width: none;
+}
+.chat-box__select {
+  display: grid;
+  gap: 10px;
 }/*# sourceMappingURL=chat-box.css.map */

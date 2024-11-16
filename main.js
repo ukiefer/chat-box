@@ -134,7 +134,7 @@ btnSelect.onclick = () => {
             nextStep: 2
         },
         {
-            text: 's ist ein paradiesmatisches Land, in dem einem gebratene Satzteile in den Mund fliegen.',
+            text: 'Es ist ein paradiesmatisches Land, in dem einem gebratene Satzteile in den Mund fliegen.',
             nextStep: 3
         },
         {

@@ -6,28 +6,62 @@ chat-box
     right: 20px
 
 .chat-box
-    padding-inline: 10px
+    padding-inline: 30px
     display: flow-root
     outline: 2px solid rgba(blue,.3)
     min-height: 100%
 
+    --_chat-box-bg: #eeeeee
+
+    p
+        margin: 0
+
     .h
         display: none
 
-    &__message
+    .tip
+        position: relative
+
+        &::after
+            content: ''
+            position: absolute
+            bottom: 0
+            width: 30px
+            aspect-ratio: 1
+            background-color: var(--_chat-box-bg)
+            mask-image: radial-gradient(circle, transparent 70%, black 70%)
+            pointer-events: none
+
+        &.left::after
+            left: -30px
+            clip-path: inset(50% 0 0 50%)
+
+        &.right::after
+            right: -30px
+            clip-path: inset(50% 50% 0 0)
+
+
+    &__inner
+        padding-block: 10px
+        display: grid
+        gap: 10px
+
+    &__message,
+    &__option button
+        position: relative
+        padding: 10px
+        background-color: var(--_chat-box-bg)
+        border-radius: 10px
+
         &.left
-            padding-right: 30px
+            margin-right: 30px
+            border-bottom-left-radius: 0
 
         &.right
-            padding-left: 30px
-
-        &:first-child
-            margin-top: 10px
+            margin-left: 30px
+            border-bottom-right-radius: 0
 
     &__option
-        // transition: max-height 2s ease-out
-        overflow: hidden
-
         &.fade-out
             transition: max-height 400ms ease-out, opacity 200ms
 
@@ -47,12 +81,25 @@ chat-box
             .right &
                 text-align: right
 
+        button
+            --_chat-box-bg: pink
+            border: 0
+            cursor: pointer
+
+            &[disabled]
+                --_chat-box-bg: deeppink
+                color: white
+
     &__outer
         outline: 2px solid rgba(red,.3)
         position: absolute
         right: 0
         bottom: 30px
-        width: 300px
+        width: 320px
         height: 500px
         overflow-y: scroll
         scrollbar-width: none
+
+    &__select
+        display: grid
+        gap: 10px
