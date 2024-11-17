@@ -138,7 +138,7 @@
                     clearInterval(interval)
 
                     // Trigger custom event `chatboxbubbleshow`
-                    const event = new CustomEvent('chatboxbubbleshow', {detail: {breakpoint: currentBreakpoint}})
+                    const event = new CustomEvent('chatboxbubbleshow')
                     window.dispatchEvent(event)
                 }
             }

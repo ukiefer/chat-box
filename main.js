@@ -117,6 +117,7 @@ const chatBox = new ChatBox($$.qs('chat-box'))
 chatBox.initialize()
 
 let pos = false
+let pushSelect = true
 const btn = $$.qs('chat-box > button:nth-child(1)')
 const btnSelect = $$.qs('chat-box > button:nth-child(2)')
 btn.onclick = () => {
@@ -146,4 +147,11 @@ btnSelect.onclick = () => {
 
 window.addEventListener('chatboxselect', (e) => {
     console.log('chatboxselect', e)
+})
+window.addEventListener('chatboxbubbleshow', (e) => {
+    console.log('chatboxbubbleshow', e)
+    if (pushSelect) {
+        pushSelect = false
+        btnSelect.click()
+    }
 })
