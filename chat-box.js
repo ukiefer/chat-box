@@ -112,6 +112,7 @@
         target.setAttribute('disabled', '')
         const option = target.closest('.chat-box__option')
         const siblings = [...option.parentNode.children].filter(node => node != option)
+        option.parentElement.classList.add('selected')
         const interval = setInterval(() => {
             if (siblings.length) {
                 this.hideOption(siblings.shift())

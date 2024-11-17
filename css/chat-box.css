@@ -101,4 +101,8 @@ chat-box {
 .chat-box__select {
   display: grid;
   gap: 10px;
+  transition: gap 100ms;
+}
+.chat-box__select.selected {
+  gap: 0;
 }/*# sourceMappingURL=chat-box.css.map */
