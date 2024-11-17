@@ -117,7 +117,10 @@
                 this.hideOption(siblings.shift())
             } else {
                 clearInterval(interval)
-                //TODO trigger next step
+
+                // Trigger custom event `chatboxselect`
+                const event = new CustomEvent('chatboxselect', {detail: {target: target}})
+                window.dispatchEvent(event)
             }
         }, ChatBox.SPEED)
     }
@@ -133,6 +136,10 @@
                 i += 1
                 if (i >= length) {
                     clearInterval(interval)
+
+                    // Trigger custom event `chatboxbubbleshow`
+                    const event = new CustomEvent('chatboxbubbleshow', {detail: {breakpoint: currentBreakpoint}})
+                    window.dispatchEvent(event)
                 }
             }
         }, speed)

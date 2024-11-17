@@ -143,3 +143,7 @@ btnSelect.onclick = () => {
         }
     ], 30)
 }
+
+window.addEventListener('chatboxselect', (e) => {
+    console.log('chatboxselect', e)
+})
